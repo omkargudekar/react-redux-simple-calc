@@ -24,7 +24,12 @@ const Calculator = props => {
 
                             </tr>
                             <tr >
-                                <td colSpan="4" style={{ width: '100%' }}><button onClick={() => { }}>Save Result</button></td>
+                                <td colSpan="4" style={{ width: '100%' }}><button onClick={() => { 
+                                    props.saveAction({
+                                        id:new Date().toString(),
+                                        result: props.currentResult
+                                    });
+                                }}>Save Result</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -35,10 +40,10 @@ const Calculator = props => {
                         <ul>
                             {
                                 props.storedResults.map((el) =>{
-                                    <li style={{ textAlign: 'left' }}>
-                                        {el.value} 
+                                    return (<li style={{ textAlign: 'left' }} key={el.id}>
+                                        {el.result} 
                                         <button onClick={() => { props.deleteAction(el.id)}} style={{ backgroundColor: '#FF5733' }}>X</button>
-                                    </li>
+                                    </li>)
                                 })
                             }
                         </ul>
@@ -63,7 +68,7 @@ const mapActionsToProps = (dispatch) => {
         decrAction: () => { return dispatch({ type: Actions.DECR_ACTION}) },
         addAction: () => { return dispatch({ type: Actions.ADD_ACTION, value: 10 }) },
         subtractAction: () => { return dispatch({ type: Actions.SUB_ACTION, value: 10 }) },
-        saveAction: () => { return dispatch({ type: Actions.SAVE_ACTION, value: 0 }) },
+        saveAction: (currentResult) => { return dispatch({ type: Actions.SAVE_ACTION, value: currentResult }) },
         deleteAction: (id) => { return dispatch({ type: Actions.DELETE_ACTION, value: id }) },
 
     }

@@ -7,11 +7,11 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         
         case "SAVE_ACTION":
-            newStoredResults=[...state.storedResult];
-            newStoredResults.push({value:action.value,id:action.id})
+            newStoredResults = [...state.storedResults];
+            newStoredResults.push(action.value);
             return {
                 ...state,
-                storedResults: newStoredResults
+                storedResults:[... newStoredResults]
             }
         case "DELETE_ACTION":
             let toDeleteId=action.value;
