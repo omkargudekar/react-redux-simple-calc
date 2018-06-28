@@ -14,7 +14,7 @@ const reducer = (state = initialState,action)=>{
         case "SUB_ACTION":
                     return {
                         ...state,
-                        currentResult: state.currentResult - action.value
+                        currentResult: state.currentResult-action.value
                     }
         case "INCR_ACTION":
                     return {

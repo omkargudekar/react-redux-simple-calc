@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import * as Actions from '../store/Actions'
+import * as Actions from '../store/Actions/'
+console.log(Actions)
+
 const Calculator = props => {
     return (
         <div style={{marging:'auto'}}>
@@ -20,7 +22,7 @@ const Calculator = props => {
                                 <td><button onClick={() => { props.incrAction()}}>INC ++</button></td>
                                 <td><button onClick={() => { props.decrAction()}}>DEC --</button></td>
                                 <td><button onClick={() => { props.addAction()}}>ADD 10</button></td>
-                                <td><button onClick={() => { props.decrAction()}}>SUB 10</button></td>
+                                <td><button onClick={() => { props.subtractAction()}}>SUB 10</button></td>
 
                             </tr>
                             <tr >
@@ -64,12 +66,12 @@ const mapStateToProps = state=>{
 
 const mapActionsToProps = (dispatch) => {
     return {
-        incrAction: () => { return dispatch({ type:Actions.INCR_ACTION})},
-        decrAction: () => { return dispatch({ type: Actions.DECR_ACTION}) },
-        addAction: () => { return dispatch({ type: Actions.ADD_ACTION, value: 10 }) },
-        subtractAction: () => { return dispatch({ type: Actions.SUB_ACTION, value: 10 }) },
-        saveAction: (currentResult) => { return dispatch({ type: Actions.SAVE_ACTION, value: currentResult }) },
-        deleteAction: (id) => { return dispatch({ type: Actions.DELETE_ACTION, value: id }) },
+        incrAction: () => { dispatch(Actions.incrAction()) },
+        decrAction: () => { dispatch(Actions.decrAction()) },
+        addAction: () => { dispatch(Actions.addAction())},
+        subtractAction: () => { dispatch(Actions.subtractAction()) },
+        saveAction: (currentResult) => { dispatch(Actions.saveAction(currentResult))},
+        deleteAction: (id) => { dispatch(Actions.deleteAction(id)) },
 
     }
 }
